@@ -1,28 +1,47 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-app>
+    <v-content class="text-center">
+      <v-btn @click="showVue2">Vue 2 Option API</v-btn>
+      <v-btn @click="showVue3">Vue 3 Composition API</v-btn>
+      <span v-show="vue2">
+        <CarouselContainerB />
+      </span>
+      <span v-show="vue3">
+        <CarouselContainer />
+      </span>
+    </v-content>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CarouselContainer from "./components/CarouselContainer";
+import CarouselContainerB from "./components/CarouselContainerB";
 
 export default {
-  name: 'App',
+  name: "App",
+
   components: {
-    HelloWorld
+    CarouselContainer,
+    CarouselContainerB
+  },
+
+  data: () => ({
+    vue3: false,
+    vue2: false
+  }),
+  methods: {
+    showVue2() {
+      this.vue2 = true;
+      this.vue3 = false;
+    },
+
+    showVue3() {
+      this.vue2 = false;
+      this.vue3 = true;
+    }
   }
-}
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss" scoped>
 </style>
